@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.github.edgar615</groupId>
+  <artifactId>distributed-lock</artifactId>
+  <packaging>pom</packaging>
+  <version>0.0.1</version>
+  <modules>
+    <module>core</module>
+    <module>spring</module>
+    <module>spring-jdbc</module>
+    <module>spring-redis</module>
+  </modules>
+
+
+  <properties>
+    <java.version>1.8</java.version>
+    <java.encoding>UTF-8</java.encoding>
+    <project.build.sourceEncoding>${java.encoding}</project.build.sourceEncoding>
+    <org.slf4j.version>1.7.24</org.slf4j.version>
+    <spring.version>5.0.5.RELEASE</spring.version>
+    <spring.boot.version>2.0.1.RELEASE</spring.boot.version>
+    <distributed.lock.release.version>0.0.1</distributed.lock.release.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${org.slf4j.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
