@@ -5,6 +5,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 分布式锁的注解
@@ -36,12 +37,22 @@ public @interface DistributeLock {
     /**
      * 过期时间,单位毫秒
      */
-    long expireMills() default 5000L;
+    long expire() default 5000L;
+
+    /**
+     * 过期时间的单位，默认毫秒
+     */
+    TimeUnit expireUnit() default TimeUnit.MILLISECONDS;
 
     /**
      * 重试的间隔时间，单位毫秒，通过重试间隔和重试次数可以实现锁的等待超时
      */
-    long retryIntervalMills() default 200L;
+    long retryInterval() default 200L;
+
+    /**
+     * 重试时间的单位，默认毫秒
+     */
+    TimeUnit retryIntervalUnit() default TimeUnit.MILLISECONDS;
 
     /**
      * 重试次数，默认不重试

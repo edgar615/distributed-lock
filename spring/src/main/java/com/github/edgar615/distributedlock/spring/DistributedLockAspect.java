@@ -6,6 +6,7 @@ import com.github.edgar615.distributedlock.DistributedLockImpl;
 import com.github.edgar615.distributedlock.DistributedLockManager;
 import java.lang.reflect.Method;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -56,8 +57,8 @@ public class DistributedLockAspect {
     String lockValue = valueExpression.getValue(context, String.class);
 
     DistributedLockImpl distributedLock = new DistributedLockImpl(distributeLock.storeName(),
-        lockKey, lockValue, distributeLock.expireMills());
-    distributedLock.setRetryIntervalMills(distributeLock.retryIntervalMills());
+        lockKey, lockValue, distributeLock.expireUnit().toMillis(distributeLock.expire()));
+    distributedLock.setRetryIntervalMills(distributeLock.retryIntervalUnit().toMillis(distributeLock.retryInterval()));
     distributedLock.setRetryTimes(distributeLock.retryTimes());
     boolean lockAquired = distributedLockManager.acquire(distributedLock);
     if (!lockAquired) {

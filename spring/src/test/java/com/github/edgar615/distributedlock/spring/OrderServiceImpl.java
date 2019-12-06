@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class OrderServiceImpl implements OrderService {
 
   @Override
-  @DistributeLock(lockKey = "'order:' + #p0", expireMills = 1000L, lockValue = "#applicationId")
+  @DistributeLock(lockKey = "'order:' + #p0", expire = 1000L, lockValue = "#applicationId")
   public boolean pay(String orderNo, int sleepSecond) {
     if (sleepSecond > 0) {
       try {
